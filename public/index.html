@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>spot it — Report Bathroom Damage</title>
+  <meta name="description" content="Report damaged or vandalized school bathrooms so they can be fixed quickly." />
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <img src="/logo.svg" alt="" width="48" height="48" />
+        <p class="brand-name">spot <span>it</span></p>
+      </a>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/#about">About Us</a>
+        <a href="/report">Report</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="wrap hero">
+      <div>
+        <h1>Keep our school bathrooms <mark>clean &amp; safe</mark>.</h1>
+        <p>See something broken, messy, or vandalized? Tell us in under a minute so it can get fixed fast.</p>
+        <a class="btn" href="/report">🚨 Report It</a>
+      </div>
+      <img class="hero-logo" src="/logo.svg" alt="spot it logo: a shield with a water drop and check mark" />
+    </section>
+
+    <section class="wrap steps" aria-label="How it works">
+      <div class="card">
+        <div class="num">1</div>
+        <h3>Spot a problem</h3>
+        <p>Broken items, graffiti, clogs, empty dispensers, or a big mess.</p>
+      </div>
+      <div class="card">
+        <div class="num">2</div>
+        <h3>Click “Report It”</h3>
+        <p>Answer four quick questions about where and what happened.</p>
+      </div>
+      <div class="card">
+        <div class="num">3</div>
+        <h3>It gets fixed</h3>
+        <p>Your report is sent right away so the right people can take care of it.</p>
+      </div>
+    </section>
+
+    <section id="about" class="wrap">
+      <div class="card about">
+        <h2>About Us</h2>
+        <p>We are three 11-year-old students—Tejas, Vikrant, and Aarav—who want to help improve our school environment. After hearing concerns from several teachers regarding ongoing vandalism and damage in the school bathrooms, we took the initiative to build this website to help address and resolve the issue.</p>
+        <div class="team">
+          <span>Tejas</span>
+          <span>Vikrant</span>
+          <span>Aarav</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      &copy; <span id="year">2026</span> <strong>spot it</strong> &mdash; created by Tejas, Vikrant &amp; Aarav. All rights reserved.
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>

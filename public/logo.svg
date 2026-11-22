@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="spot it logo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <!-- shield -->
+  <path d="M60 6 L104 22 V58 C104 86 84 104 60 114 C36 104 16 86 16 58 V22 Z" fill="url(#g)" stroke="#0f172a" stroke-width="5" stroke-linejoin="round"/>
+  <!-- water drop -->
+  <path d="M60 30 C60 30 40 54 40 68 C40 80 49 88 60 88 C71 88 80 80 80 68 C80 54 60 30 60 30 Z" fill="#fff" stroke="#0f172a" stroke-width="4" stroke-linejoin="round"/>
+  <!-- check mark -->
+  <path d="M50 68 L57 76 L71 60" fill="none" stroke="#16a34a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- sparkles -->
+  <path d="M94 8 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z" fill="#facc15" stroke="#0f172a" stroke-width="2.5" stroke-linejoin="round"/>
+  <circle cx="20" cy="104" r="5" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
+</svg>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Report a Problem — spot it</title>
+  <meta name="description" content="Report damaged or vandalized school bathrooms so they can be fixed quickly." />
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <img src="/logo.svg" alt="" width="48" height="48" />
+        <p class="brand-name">spot <span>it</span></p>
+      </a>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/#about">About Us</a>
+        <a href="/report">Report</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap form-page">
+    <header>
+      <h1>🚨 Report a Bathroom Problem</h1>
+      <p>All questions are required <span class="req">*</span></p>
+    </header>
+
+    <form class="report" name="bathroom-report" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="subject" value="New bathroom report (%{submissionId})" />
+      <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+      <fieldset class="card" data-group="grade">
+        <legend><span class="qnum">Q1</span>Which grade area bathroom is it? <span class="req">*</span></legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="grade" value="Kindergarten to 1st Grade" required /> Kindergarten to 1st Grade</label>
+          <label class="option"><input type="radio" name="grade" value="2nd to 3rd Grade" /> 2nd to 3rd Grade</label>
+          <label class="option"><input type="radio" name="grade" value="4th to 5th Grade" /> 4th to 5th Grade</label>
+          <label class="option"><input type="radio" name="grade" value="6th to 7th Grade" /> 6th to 7th Grade</label>
+        </div>
+        <p class="error" role="alert">Please choose a grade area.</p>
+      </fieldset>
+
+      <fieldset class="card" data-group="restroom">
+        <legend><span class="qnum">Q2</span>Boys' or Girls' bathroom? <span class="req">*</span></legend>
+        <div class="options two">
+          <label class="option"><input type="radio" name="restroom" value="Boys' Bathroom" required /> 🚹 Boys' Bathroom</label>
+          <label class="option"><input type="radio" name="restroom" value="Girls' Bathroom" /> 🚺 Girls' Bathroom</label>
+        </div>
+        <p class="error" role="alert">Please choose Boys' or Girls' bathroom.</p>
+      </fieldset>
+
+      <fieldset class="card" data-group="problems">
+        <legend><span class="qnum">Q3</span>What problem is it? (Check all that apply) <span class="req">*</span></legend>
+        <div class="options">
+          <label class="option"><input type="checkbox" name="problems[]" value="Broken items / Destruction (doors, locks, mirrors, sinks)" /> Broken items / Destruction (doors, locks, mirrors, sinks)</label>
+          <label class="option"><input type="checkbox" name="problems[]" value="Graffiti or writing on walls" /> Graffiti or writing on walls</label>
+          <label class="option"><input type="checkbox" name="problems[]" value="Clogged toilet / Sink flooding" /> Clogged toilet / Sink flooding</label>
+          <label class="option"><input type="checkbox" name="problems[]" value="Broken soap or paper towel dispenser" /> Broken soap or paper towel dispenser</label>
+          <label class="option"><input type="checkbox" name="problems[]" value="Severe trash / Mess" /> Severe trash / Mess</label>
+        </div>
+        <p class="error" role="alert">Please check at least one problem.</p>
+      </fieldset>
+
+      <fieldset class="card" data-group="details">
+        <legend><span class="qnum">Q4</span><label for="details">Describe the problem in detail (Which stall or sink is affected?)</label> <span class="req">*</span></legend>
+        <textarea id="details" name="details" required placeholder="Example: The second stall door lock is broken and the sink closest to the door is clogged."></textarea>
+        <p class="error" role="alert">Please describe the problem.</p>
+      </fieldset>
+
+      <div class="submit-row">
+        <button class="btn" type="submit">Submit Report ✅</button>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    const form = document.querySelector("form.report");
+    const checks = {
+      grade: () => !!form.querySelector('input[name="grade"]:checked'),
+      restroom: () => !!form.querySelector('input[name="restroom"]:checked'),
+      problems: () => !!form.querySelector('input[name="problems[]"]:checked'),
+      details: () => form.details.value.trim().length > 0,
+    };
+    const validate = (group) => {
+      const ok = checks[group]();
+      form.querySelector(`[data-group="${group}"] .error`).classList.toggle("show", !ok);
+      return ok;
+    };
+    form.addEventListener("submit", (e) => {
+      const results = Object.keys(checks).map(validate);
+      if (results.includes(false)) {
+        e.preventDefault();
+        form.querySelector(".error.show").closest("fieldset").scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+    form.addEventListener("change", (e) => {
+      const fs = e.target.closest("[data-group]");
+      if (fs && fs.querySelector(".error.show")) validate(fs.dataset.group);
+    });
+    form.details.addEventListener("input", () => {
+      if (form.querySelector('[data-group="details"] .error.show')) validate("details");
+    });
+  </script>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      &copy; <span id="year">2026</span> <strong>spot it</strong> &mdash; created by Tejas, Vikrant &amp; Aarav. All rights reserved.
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
